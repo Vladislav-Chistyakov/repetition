@@ -1,31 +1,23 @@
-const user = {
-    name: 'Bob',
-    age: 30,
+const addManyMonth = {
+    arbeiten: 130_000,
+    bonus: 0,
 }
 
-const userProxy = new Proxy(user, {
+const proxyAddManyMonth = new Proxy(addManyMonth, {
+    get(target, key) {
+        return Reflect.get(target, key)
+    },
     set(target, key, value) {
-        console.log(`Меняем значение ключа ${key}: значение ${target[key]} на ${value}`)
-        target[key] = value
-        return true
-    }
-})
-
-const userProxyReflect = new Proxy(user, {
-    set(target, key, value) {
-        if (!Reflect.has(target, key)) {
-            Reflect.set(target, key, 'Unknown')
-            console.log(`${target[key]}`);
-        } else {
-            console.log('Не меняем значение');
+        if (key === 'bonus') {
+            console.log('Изменяем бонус', key, value)
+            Reflect.set(target, key, value)
             return true
+        } else {
+            return false
         }
     }
 })
 
-userProxy.name = 'Senku'
-console.log(userProxy.name)
-
-userProxyReflect.name = 'Senku'
-userProxyReflect.address = 'Senku'
-console.log(userProxyReflect.address)
+proxyAddManyMonth.bonus = 10_000
+proxyAddManyMonth.addManyMonth = 100_000
+proxyAddManyMonth.arbeiten = 150_000

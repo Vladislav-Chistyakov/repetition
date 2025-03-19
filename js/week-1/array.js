@@ -1,18 +1,15 @@
-const userInfo = {
+const person = {
     name: 'Alice',
-    age: 25
-};
-
-const additionalInfo = {
-    address: '456 Elm St',
-    phone: '987-654-3210'
+    address: {
+        street: 'Main St',
+        city: 'New York'
+    }
 }
 
-const newObject = { ...additionalInfo, ...userInfo }
+const { name: nameObject, address: { street: ulica, city: gorod} } = person
 
-console.log('new object', newObject)
-const array1 = [1, 2, 3];
-const array2 = [4, 5, 6];
+console.log(nameObject, ulica, gorod)
 
-const array3 = [ ...array1, ...array2 ]
-console.log('array3', array3)
+const numbers = [1, 2, 3, 4, 5]
+const [, , third] = numbers
+console.log(third)

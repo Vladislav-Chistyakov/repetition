@@ -1,16 +1,13 @@
 const words = ["apple", "banana", "apple", "orange", "banana", "banana"]
 
+const newMap = new Map()
 
-function initMap(array) {
-    const newMap = new Map()
-    for (const item of array) {
-        if (newMap.has(item)) {
-            newMap.set(item, newMap.get(item) + 1)
-        } else {
-            newMap.set(item, 1)
-        }
+for (let word of words) {
+    if (newMap.has(word)) {
+        newMap.set(word, newMap.get(word) + 1)
+    } else {
+        newMap.set(word, 1)
     }
-    return newMap
 }
 
-console.log(initMap(words))
+console.log(newMap)
